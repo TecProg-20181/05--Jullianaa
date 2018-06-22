@@ -1,5 +1,7 @@
 import unittest
+import subprocess
 from diskspace import *
+
 
 class Diskspace_test(unittest.TestCase):
     
@@ -35,6 +37,12 @@ class Diskspace_test(unittest.TestCase):
         bytes_size = bytes_to_readable(blocks)
         label = bytes_size[-2:]
         self.assertEqual('Mb', label)
+
+    def test_check_output(self):
+        command = 'du'
+        firstResult = subprocess.check_output(command.strip().split(' '))
+        finalResult = subprocess_check_output(command)
+        self.assertEqual(firstResult, finalResult)
 
 if __name__ == '__main__':
     unittest.main()
