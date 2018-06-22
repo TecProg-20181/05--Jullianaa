@@ -17,6 +17,18 @@ class Diskspace_test(unittest.TestCase):
         blocks = 0
         bytes_size = bytes_to_readable(blocks)
         self.assertIsInstance(bytes_size, str)
-        
+
+    def test_tbytes(self):
+        blocks = 100000000000
+        bytes_size = bytes_to_readable(blocks)
+        label = bytes_size[-2:]
+        self.assertEqual('Tb', label)
+
+    def test_gbytes(self):
+        blocks = 100000000
+        bytes_size = bytes_to_readable(blocks)
+        label = bytes_size[-2:]
+        self.assertEqual('Gb', label)
+
 if __name__ == '__main__':
     unittest.main()
